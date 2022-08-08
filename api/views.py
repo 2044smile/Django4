@@ -11,6 +11,8 @@ def get_data(request):
     """
     :param request:
     :return: items list
+
+    직렬화 쿼리셋, 모델 인스턴스 등의 복잡한 데이터를 JSON, XML 타입으로 변환 가능
     """
     items = Item.objects.all()
     serializer = ItemSerializer(items, many=True)
@@ -22,8 +24,11 @@ def add_item(request):
     """
     :param request:
     :return: create item
+
+    Deserializer 받은 데이터(POST) validating
+    반드시 is_valid() 사용
     """
     serializer = ItemSerializer(data=request.data)
-    if serializer.is_valid():
+    if serializer.is_valid(raise_exception=True):
         serializer.save()
     return Response(serializer.data)
