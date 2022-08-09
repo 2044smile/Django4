@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.viewsets import ViewSet
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
 
 from api.models import Item
 from .serializers import ItemSerializer
@@ -32,3 +33,9 @@ def add_item(request):
     if serializer.is_valid(raise_exception=True):
         serializer.save()
     return Response(serializer.data)
+
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    permission_classes = [AllowAny]
