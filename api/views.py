@@ -2,11 +2,18 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from api.models import Item
 from .serializers import ItemSerializer
 
 
+@swagger_auto_schema(
+    method='GET',
+    tags=['FBV items'],
+    responses={200: 'Success'}
+)
 @api_view(['GET'])
 def get_item(request):
     """
@@ -20,6 +27,11 @@ def get_item(request):
     return Response(serializer.data)
 
 
+@swagger_auto_schema(
+    method='POST',
+    tags=['FBV items'],
+    responses={200: 'Success'}
+)
 @api_view(['POST'])
 def add_item(request):
     """
