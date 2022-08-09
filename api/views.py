@@ -20,7 +20,7 @@ def get_item(request):
     return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 def add_item(request):
     """
     :param request:
