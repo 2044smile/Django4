@@ -8,7 +8,7 @@ from .serializers import ItemSerializer
 
 
 @api_view(['GET'])
-def get_data(request):
+def get_item(request):
     """
     :param request:
     :return: items list

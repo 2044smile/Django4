@@ -14,7 +14,7 @@ router = DefaultRouter()
 router.register('items', views.ItemViewSet, basename='items')
 
 urlpatterns = [
-    path('list/', views.get_data),
+    path('get/', views.get_item),
     path('add/', views.add_item),
 ] + router.urls
 
