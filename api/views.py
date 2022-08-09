@@ -1,9 +1,10 @@
+from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
 
 from api.models import Item
 from .serializers import ItemSerializer
@@ -51,3 +52,4 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     permission_classes = [AllowAny]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
